@@ -15,7 +15,7 @@ export default function Header({}: HeaderProps) {
   }
 
   return (
-    <header className="flex flex-row justify-between px-4 py-4 border-b-2 border-black">
+    <header className="flex flex-row justify-between px-4 py-4">
       <Logo />
       <NavLinks authenticated={authenticated} />
     </header>

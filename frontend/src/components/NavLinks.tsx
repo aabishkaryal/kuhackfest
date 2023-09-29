@@ -1,33 +1,52 @@
 import Link from "next/link";
 
-import { NavLink } from "@/types/NavLInk";
+import { BiLogOut, BiSolidDashboard, BiLogIn } from "react-icons/bi";
+import { MdNotifications } from "react-icons/md";
 
 type NavLinksProps = {
   authenticated: boolean;
 };
 
-const links: NavLink[] = [
-  { name: "Home", href: "/", authenticated: false },
-  { name: "About", href: "/about", authenticated: false },
-  { name: "Contact", href: "/contact", authenticated: false },
-  { name: "Dashboard", href: "/dashboard", authenticated: true },
-];
-
 export default function NavLink({ authenticated }: NavLinksProps) {
   return (
-    <nav>
-      <ul className="flex flex-row space-x-3">
-        {links.map((link) => {
-          if (link.authenticated && !authenticated) {
-            return null;
-          }
-          return (
-            <Link href={link.href} key={link.name}>
-              {link.name}
-            </Link>
-          );
-        })}
-      </ul>
-    </nav>
+    <>
+      {authenticated ? (
+        <nav className="space-x-4 flex flex-row">
+          <Link href="/notifications">
+            <button className="flex flex-row items-center space-x-1">
+              <MdNotifications className="text-xl" />
+              <span className="text-xl">Notifications</span>
+            </button>
+          </Link>
+          <Link href="/logout">
+            <button className="flex flex-row items-center space-x-1">
+              <BiLogOut className="text-xl" />
+              <span className="text-xl">Logout</span>
+            </button>
+          </Link>
+          <Link href="/dashboard">
+            <button className="flex flex-row items-center space-x-1">
+              <BiSolidDashboard className="text-xl" />
+              <span className="text-xl">Dashboard</span>
+            </button>
+          </Link>
+        </nav>
+      ) : (
+        <nav className="space-x-4 flex flex-row">
+          <Link href="/login">
+            <button className="flex flex-row items-center space-x-1">
+              <span className="text-xl">Login</span>
+              <BiLogIn className="text-xl" />
+            </button>
+          </Link>
+          <Link href="/signup">
+            <button className="flex flex-row items-center space-x-1">
+              <span className="text-xl">Signup</span>
+              <BiLogIn className="text-xl" />
+            </button>
+          </Link>
+        </nav>
+      )}
+    </>
   );
 }
