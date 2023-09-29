@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import CategoryFilter from "./CategoryFilter";
-import { productCategory, priceCategory } from "@/types/Categories";
+import { productCategory } from "@/types/Categories";
 import SearchFilter from "./SearchFilter";
 import Listings from "./Listings";
 
@@ -11,21 +11,16 @@ export default function Body({}: BodyProps) {
   const [searchText, setSearchText] = useState("");
   const [productCategoryFilter, setProductCategoryFilter] =
     useState<productCategory>(productCategory.All);
-  const [priceCategoryFilter, setPriceCategoryFilter] = useState<priceCategory>(
-    priceCategory.All
-  );
   return (
-    <main className="flex flex-row">
-      <CategoryFilter
-        productCategoryFilter={productCategoryFilter}
-        setProductCategoryFilter={setProductCategoryFilter}
-        priceCategoryFilter={priceCategoryFilter}
-        setPriceCategoryFilter={setPriceCategoryFilter}
-      />
-      <div className="flex flex-col">
+    <main className="flex flex-col max-w-[1200px] w-[90%]">
+      <div className="flex flex-col bg-gray-100 p-4 justify-center w-full">
         <SearchFilter searchText={searchText} setSearchText={setSearchText} />
-        <Listings />
+        <CategoryFilter
+          productCategoryFilter={productCategoryFilter}
+          setProductCategoryFilter={setProductCategoryFilter}
+        />
       </div>
+      <Listings />
     </main>
   );
 }

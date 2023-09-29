@@ -30,6 +30,12 @@ export default function NavLink({ authenticated }: NavLinksProps) {
               <span className="text-xl">Dashboard</span>
             </button>
           </Link>
+          <Link href="/dashboard">
+            <button className="flex flex-row items-center space-x-1">
+              <BiSolidDashboard className="text-xl" />
+              <span className="text-xl">Saved</span>
+            </button>
+          </Link>
         </nav>
       ) : (
         <nav className="space-x-4 flex flex-row">

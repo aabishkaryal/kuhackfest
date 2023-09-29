@@ -3,6 +3,7 @@ export enum productCategory {
   Furniture = "furniture",
   Clothing = "clothing",
   Housing = "housing",
+  Others = "others",
   All = "all",
 }
 export const allProductCategories = [
@@ -11,10 +12,3 @@ export const allProductCategories = [
   productCategory.Clothing,
   productCategory.Housing,
 ];
-
-export enum priceCategory {
-  Free = "free",
-  Paid = "paid",
-  All = "all",
-}
-export const allPriceCategories = [priceCategory.Free, priceCategory.Paid];
