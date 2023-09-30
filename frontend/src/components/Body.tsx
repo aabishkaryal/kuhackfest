@@ -19,6 +19,7 @@ export default function Body({}: BodyProps) {
           productCategoryFilter={productCategoryFilter}
           setProductCategoryFilter={setProductCategoryFilter}
         />
+        <hr className="my-4 border-1 border-gray-500" />
       </div>
       <Listings />
     </main>

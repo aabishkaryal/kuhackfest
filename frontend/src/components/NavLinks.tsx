@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { BiLogOut, BiSolidDashboard, BiLogIn } from "react-icons/bi";
 import { MdNotifications } from "react-icons/md";
+import { CiSaveDown2 } from "react-icons/ci";
 
 type NavLinksProps = {
   authenticated: boolean;
@@ -32,7 +33,7 @@ export default function NavLink({ authenticated }: NavLinksProps) {
           </Link>
           <Link href="/dashboard">
             <button className="flex flex-row items-center space-x-1">
-              <BiSolidDashboard className="text-xl" />
+              <CiSaveDown2 className="text-xl" />
               <span className="text-xl">Saved</span>
             </button>
           </Link>

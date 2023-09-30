@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
-import { allProductCategories, productCategory } from "@/types/Categories";
+import { allProductCategoryDetails, productCategory } from "@/types/Categories";
 
 type CategoryFilterProps = {
   productCategoryFilter: productCategory;
@@ -11,22 +11,23 @@ export default function CategoryFilter({
   productCategoryFilter,
   setProductCategoryFilter,
 }: CategoryFilterProps) {
+  const handleClick = (productCategory: productCategory) => {
+    setProductCategoryFilter(productCategory);
+  };
   return (
-    <div>
-      <section>
-        <h3>Product Category:</h3>
-        {allProductCategories.map((productCategory) => (
-          <div key={productCategory} className="space-x-2 my-1">
-            <input
-              type="radio"
-              id={productCategory}
-              onSelect={() => setProductCategoryFilter(productCategory)}
-              checked={productCategoryFilter === productCategory}
-            />
-            <label htmlFor={productCategory}>{productCategory}</label>
-          </div>
-        ))}
-      </section>
-    </div>
+    <section className="w-full flex flex-row justify-around mt-8">
+      {allProductCategoryDetails.map(([productCategory, Icon]) => (
+        <div
+          key={productCategory}
+          className="space-y-2 my-1 flex flex-col justify-center items-center p-2  cursor-pointer"
+          onClick={() => handleClick(productCategory)}
+        >
+          <span className="bg-white rounded-full w-16 h-16 p-4 flex items-center justify-center">
+            <Icon className="w-full h-full" />
+          </span>
+          <p className="text-lg">{productCategory}</p>
+        </div>
+      ))}
+    </section>
   );
 }
