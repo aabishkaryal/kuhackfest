@@ -6,6 +6,7 @@ import SearchFilter from "./SearchFilter";
 import ShowListings from "./ShowListings";
 import { exampleListings } from "@/types/Listings";
 import { PageContext } from "@/context/PageContext";
+import { PageType } from "@/types/pageType";
 
 type BodyProps = {};
 const defaultFilter: Filter = {
@@ -15,15 +16,21 @@ const defaultFilter: Filter = {
 export default function Body({}: BodyProps) {
   const [filter, updateFilter] = useState<Filter>(defaultFilter);
   const pageValue = useContext(PageContext);
-  let dashboard = false;
+  let pageType: PageType = "index";
   if (pageValue) {
-    dashboard = pageValue.pageType === "dashboard";
+    pageType = pageValue.pageType;
   }
+
+  let isDashboard = pageType === "dashboard";
+  let isSaved = pageType === "saved";
+
   return (
     <main className="flex flex-col max-w-[1200px] w-[90%]">
       <div
         className={`flex flex-col p-4 justify-center w-full ${
-          !dashboard && "border-2 border-transparent border-b-black"
+          !isDashboard &&
+          !isSaved &&
+          "border-2 border-transparent border-b-black"
         }`}
       >
         <SearchFilter
@@ -35,12 +42,12 @@ export default function Body({}: BodyProps) {
           setPriceRange={(pr) => updateFilter({ ...filter, priceRange: pr })}
           priceType={filter.priceType}
           setPriceType={(pt) => updateFilter({ ...filter, priceType: pt })}
-          dashboard={dashboard}
+          hideFilters={isDashboard || isSaved}
         />
         <CategoryFilter
           category={filter.category}
           setCategory={(pc) => updateFilter({ ...filter, category: pc })}
-          dashboard={dashboard}
+          hidden={isDashboard || isSaved}
         />
       </div>
       <ShowListings listings={exampleListings} filter={filter} />

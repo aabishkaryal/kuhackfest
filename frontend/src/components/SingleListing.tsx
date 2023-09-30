@@ -8,7 +8,7 @@ import { Listing } from "@/types/Listings";
 import calculateTimeLeft from "@/lib/timeLeft";
 import { PageContext } from "@/context/PageContext";
 import { useRouter } from "next/router";
-import addToWishList from "@/lib/addToWishList";
+import { addToWishList, removeFromWishList } from "@/lib/wishList";
 
 type SingleListingProp = {
   listing: Listing;
@@ -24,12 +24,12 @@ export default function SingleListing({ listing }: SingleListingProp) {
   }
 
   return (
-    <div className="flex flex-col space-y-2 w-[150px] shadow-md rounded-md">
+    <div className="flex flex-col space-y-2 w-[200px] shadow-md rounded-md">
       <Image
         src={listing.images[0]}
         alt={listing.title}
-        width="150"
-        height="150"
+        width="200"
+        height="200"
         className="rounded-t-md"
       />
       <p className="text-lg px-2">{listing.title}</p>
@@ -37,19 +37,27 @@ export default function SingleListing({ listing }: SingleListingProp) {
       <p className="text-sm px-2">Time Left: {timeLeft}</p>
       {dashboard ? (
         <div
-          className="flex flex-row space-x-2 bg-green-400 p-2 rounded-b-md px-2 justify-center"
+          className="flex flex-row space-x-2 bg-green-400 p-2 rounded-b-md px-2 justify-center items-center"
           onClick={() => router.push("/edit/" + listing.id)}
         >
           <button className="text-sm">Edit</button>
-          <AiOutlineEdit className="text-lg" />
+          <AiOutlineEdit className="text-md" />
+        </div>
+      ) : listing.onWishList ? (
+        <div
+          className="flex flex-row space-x-2 bg-green-400 p-2 rounded-b-md px-2 justify-center items-center"
+          onClick={() => removeFromWishList(listing.id)}
+        >
+          <button className="text-sm">Remove From WishList</button>
+          <BsSave2 className="text-md" />
         </div>
       ) : (
         <div
-          className="flex flex-row space-x-2 bg-green-400 p-2 rounded-b-md px-2 justify-center"
+          className="flex flex-row space-x-2 bg-green-400 p-2 rounded-b-md px-2 justify-center items-center"
           onClick={() => addToWishList(listing.id)}
         >
           <button className="text-sm">Add To WishList</button>
-          <BsSave2 className="text-lg" />
+          <BsSave2 className="text-md" />
         </div>
       )}
     </div>

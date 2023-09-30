@@ -14,7 +14,7 @@ type SearchFilterProps = {
   setPriceRange: (priceRange: PriceRange | undefined) => void;
   priceType: PriceType;
   setPriceType: (priceType: PriceType) => void;
-  dashboard: boolean;
+  hideFilters: boolean;
 };
 
 export default function SearchFilters({
@@ -26,7 +26,7 @@ export default function SearchFilters({
   setPriceRange,
   priceType,
   setPriceType,
-  dashboard,
+  hideFilters,
 }: SearchFilterProps) {
   return (
     <section className="w-full flex flex-col space-y-4 py-4">
@@ -46,7 +46,7 @@ export default function SearchFilters({
           Search
         </button>
       </div>
-      {!dashboard && (
+      {!hideFilters && (
         <div className="w-full flex flex-row items-end justify-around">
           <div className="flex flex-col space-y-1">
             <label className="text-xs">Location</label>
