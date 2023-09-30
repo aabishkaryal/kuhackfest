@@ -9,13 +9,13 @@ import SingleListing from "./SingleListing";
 
 type ListingsProps = {
   listings: Listing[];
-  filters: Filter;
+  filter: Filter;
 };
 
-export default function ShowListings({ listings, filters }: ListingsProps) {
+export default function ShowListings({ listings, filter }: ListingsProps) {
   const filteredListings = useMemo(
-    () => filterListings(listings, filters),
-    [listings, filters]
+    () => filterListings(listings, filter),
+    [listings, filter]
   );
   const [sortBy, setSortBy] = useState<sortOption>(sortOptions[0]);
   const sortedListings = useMemo(

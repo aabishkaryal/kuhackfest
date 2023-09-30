@@ -1,34 +1,31 @@
 import { Dispatch, SetStateAction, useCallback } from "react";
 
-import { allProductCategoryDetails, productCategory } from "@/types/filter";
+import { allCategoryDetails, productCategory } from "@/types/filter";
 
 type CategoryFilterProps = {
-  productCategoryFilter: productCategory;
-  setProductCategoryFilter: Dispatch<SetStateAction<productCategory>>;
+  category?: productCategory;
+  setCategory: (productCategory: productCategory) => void;
 };
 
 export default function CategoryFilter({
-  productCategoryFilter,
-  setProductCategoryFilter,
+  category,
+  setCategory,
 }: CategoryFilterProps) {
-  const handleClick = useCallback(
-    (productCategory: productCategory) => {
-      setProductCategoryFilter(productCategory);
-    },
-    [setProductCategoryFilter]
-  );
   return (
     <section className="w-full flex flex-row justify-around mt-8">
-      {allProductCategoryDetails.map(([productCategory, Icon]) => (
+      {allCategoryDetails.map(([pCategory, Icon]) => (
         <div
-          key={productCategory}
-          className="space-y-2 my-1 flex flex-col justify-center items-center p-2  cursor-pointer"
-          onClick={() => handleClick(productCategory)}
+          key={pCategory}
+          className={`space-y-2 my-1 flex flex-col justify-center items-center p-2  cursor-pointer ${
+            pCategory == category && "bg-white"
+          }`}
+          onClick={() => setCategory(pCategory)}
+          id={pCategory}
         >
           <span className="bg-white rounded-full w-16 h-16 p-4 flex items-center justify-center">
             <Icon className="w-full h-full" />
           </span>
-          <p className="text-lg">{productCategory}</p>
+          <p className="text-lg">{pCategory}</p>
         </div>
       ))}
     </section>

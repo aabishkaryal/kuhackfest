@@ -1,4 +1,4 @@
-import { locations } from "@/types/filter";
+import { Location, locations } from "@/types/filter";
 import { priceRanges } from "@/types/filter";
 import type { Dispatch, SetStateAction } from "react";
 
@@ -6,12 +6,16 @@ import { BiSearch } from "react-icons/bi";
 
 type SearchFilterProps = {
   searchText: string;
-  setSearchText: Dispatch<SetStateAction<string>>;
+  setSearchText: (searchText: string) => void;
+  location?: string;
+  setLocation: (location: Location | undefined) => void;
 };
 
 export default function SearchFilters({
   searchText,
   setSearchText,
+  location,
+  setLocation,
 }: SearchFilterProps) {
   return (
     <section className="w-full flex flex-col space-y-4">
@@ -34,8 +38,12 @@ export default function SearchFilters({
       <div className="w-full flex flex-row items-end justify-around">
         <div className="w-1/5 flex flex-col space-y-1">
           <label className="text-xs">Location</label>
-          <select className="w-full p-2 bg-white focus:outline-none px-4">
-            <option value="">All</option>
+          <select
+            className="w-full p-2 bg-white focus:outline-none px-4"
+            value={location}
+            onChange={(e) => setLocation(e.target.value as Location)}
+          >
+            <option value="All">All</option>
             {locations.map((location) => (
               <option key={location} value={location}>
                 {location}

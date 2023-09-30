@@ -12,7 +12,7 @@ export enum productCategory {
   Others = "Others",
   All = "All",
 }
-export const allProductCategoryDetails: [productCategory, IconType][] = [
+export const allCategoryDetails: [productCategory, IconType][] = [
   [productCategory.Electronics, FaMobile],
   [productCategory.Furniture, BiSolidBed],
   [productCategory.Clothing, GiClothes],
@@ -35,7 +35,7 @@ export type PriceRange = (typeof priceRanges)[number];
 
 export type Filter = {
   searchQuery: string;
-  category: productCategory;
+  category?: productCategory;
   location?: Location;
   priceRange?: PriceRange;
   priceType: "paid" | "free";

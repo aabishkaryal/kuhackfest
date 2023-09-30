@@ -7,7 +7,7 @@ import ContextProvider from "@/components/ContextProvider";
 import Head from "next/head";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(true);
   return (
     <ContextProvider
       authenticated={authenticated}
