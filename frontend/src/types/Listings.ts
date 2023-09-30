@@ -12,6 +12,7 @@ export type Listing = {
   timeLimit: string;
   location: string;
   phoneNumber: string;
+  onWishList: boolean;
 };
 
 export const exampleListings: Listing[] = [
@@ -27,6 +28,7 @@ export const exampleListings: Listing[] = [
     timeLimit: "2021-05-01T19:20:00.000Z",
     location: "Kathmandu",
     phoneNumber: "1234567890",
+    onWishList: false,
   },
   {
     id: "2",
@@ -40,5 +42,6 @@ export const exampleListings: Listing[] = [
     timeLimit: "2021-05-01T19:20:00.000Z",
     location: "Kathmandu",
     phoneNumber: "1234567890",
+    onWishList: true,
   },
 ];

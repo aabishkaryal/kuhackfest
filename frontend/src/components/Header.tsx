@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { AuthContext } from "@/context/AuthContext";
+import { UserContext } from "@/context/UserContext";
 
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
@@ -8,14 +8,14 @@ import NavLinks from "./NavLinks";
 type HeaderProps = {};
 
 export default function Header({}: HeaderProps) {
-  const authValue = useContext(AuthContext);
+  const userValue = useContext(UserContext);
   let authenticated = false;
-  if (authValue) {
-    authenticated = authValue.authenticated;
+  if (userValue) {
+    authenticated = userValue.user !== undefined;
   }
 
   return (
-    <header className="flex flex-row justify-between px-4 py-4 w-full">
+    <header className="flex flex-row justify-between px-4 py-4 w-full border-b-gray-300 border-b-[1px]">
       <Logo />
       <NavLinks authenticated={authenticated} />
     </header>
