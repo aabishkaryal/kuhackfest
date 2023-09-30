@@ -9,8 +9,8 @@ import { PageContext } from "@/context/PageContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const dashboardState = useContext(PageContext);
-  dashboardState?.setPageType("index");
+  const pageState = useContext(PageContext);
+  if (pageState && pageState.pageType != "sell") pageState.setPageType("index");
 
   return (
     <div className="flex flex-col items-center w-full">

@@ -41,7 +41,7 @@ export const CreateListingInputSchema = Yup.object().shape({
   title: Yup.string().required("Title is required"),
   description: Yup.string()
     .required("Description is required")
-    .length(100, "Description must be 100 characters long"),
+    .min(100, "Description must be 100 characters long"),
   price: Yup.number()
     .required("Price is required")
     .positive("Price must be positive"),
@@ -53,7 +53,9 @@ export const CreateListingInputSchema = Yup.object().shape({
     .min(1, "Time limit must be at least 1 day")
     .max(5, "Time limit must be at most 5 days"),
   location: Yup.string().required("Location is required").oneOf(locations),
-  images: Yup.array().min(1, "Please select at least 1 image"),
+  images: Yup.array()
+    .min(1, "Please select at least 1 image")
+    .max(5, "You can select at most 5 images"),
 });
 
 export const exampleListings: Listing[] = [

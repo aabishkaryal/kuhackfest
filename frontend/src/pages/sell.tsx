@@ -10,7 +10,7 @@ import ListingForm from "@/components/ListingForm";
 export default function Dashboard() {
   const router = useRouter();
   const pageState = useContext(PageContext);
-  pageState?.setPageType("sell");
+  if (pageState && pageState.pageType != "sell") pageState.setPageType("sell");
   const userState = useContext(UserContext);
   useEffect(() => {
     if (!userState?.user) router.push("/");

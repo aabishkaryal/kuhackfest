@@ -10,7 +10,8 @@ import { PageContext } from "@/context/PageContext";
 export default function Dashboard() {
   const router = useRouter();
   const pageState = useContext(PageContext);
-  pageState?.setPageType("dashboard");
+  if (pageState && pageState.pageType != "sell")
+    pageState.setPageType("dashboard");
   const userState = useContext(UserContext);
   useEffect(() => {
     if (!userState?.user) router.push("/");

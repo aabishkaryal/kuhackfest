@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { ErrorMessage, Field, Form, Formik } from "formik";
 
@@ -10,6 +10,7 @@ import {
 } from "@/types/Listings";
 import { createListing } from "@/lib/listing";
 import { locations } from "@/types/filter";
+import Image from "next/image";
 
 export default function ListingForm() {
   const pageValue = useContext(PageContext);
@@ -17,8 +18,10 @@ export default function ListingForm() {
   if (pageValue) {
     pageType = pageValue.pageType;
   }
+
+  const [images, setImages] = useState<File[]>([]);
   return (
-    <div className="w-4/5 max-w-1200 flex flex-col items-center justify-center">
+    <div className="w-4/5 max-w-1200 flex flex-col items-center justify-center shadow-md mt-4 py-2">
       <h1 className="text-3xl font-bold my-4">Add a new product</h1>
       <Formik
         initialValues={defaultCreateListingInput}
@@ -30,8 +33,8 @@ export default function ListingForm() {
           });
         }}
       >
-        {({ isSubmitting, setFieldValue }) => (
-          <Form className="flex flex-col space-y-3 items-center">
+        {({ isSubmitting, setFieldValue, getFieldHelpers }) => (
+          <Form className="flex flex-col space-y-2 items-center">
             <div className="flex flex-col my-2">
               <label htmlFor="title">Product Title:</label>
               <Field
@@ -137,6 +140,43 @@ export default function ListingForm() {
                 component="div"
                 className="text-red-500"
               />
+            </div>
+            <div className="flex flex-col my-2 justify-center">
+              <label htmlFor="images">Product Images:</label>
+              <input
+                type="file"
+                name="images"
+                id="images"
+                className="border-none"
+                accept="image/*"
+                multiple
+                onChange={(event) => {
+                  console.log(event.target.files);
+                  const newImages = [
+                    ...Array.from(event.target.files!),
+                    ...images,
+                  ].splice(0, 5);
+                  setImages(newImages);
+                  setFieldValue("images", Array.from(event.target.files!));
+                }}
+              />
+              <ErrorMessage
+                name="images"
+                component="div"
+                className="text-red-500"
+              />
+              <div className="flex flex-row space-x-4 my-4">
+                {images.map((image) => (
+                  <Image
+                    key={image.name}
+                    src={URL.createObjectURL(image)}
+                    width={100}
+                    height={100}
+                    alt="Product Image"
+                    className=""
+                  />
+                ))}
+              </div>
             </div>
             <button
               type="submit"
