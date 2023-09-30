@@ -5,7 +5,7 @@ interface LoginInputs {
   password: string;
 }
 
-export const defaultInputs: LoginInputs = {
+export const defaultLoginInputs: LoginInputs = {
   email: "",
   password: "",
 };

@@ -6,9 +6,9 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 
 import { UserContext } from "@/context/UserContext";
 import AuthBanner from "@/components/AuthBanner";
-import { defaultLoginInputs, loginInputsSchema } from "@/types/loginInputs";
+import { defaultSignUpInputs, signUpInputSchema } from "@/types/signupInputs";
 
-export default function Login() {
+export default function Signup() {
   const router = useRouter();
 
   const userState = useContext(UserContext);
@@ -21,8 +21,8 @@ export default function Login() {
       <div className="flex flex-col justify-center shadow-lg items-center p-4 rounded-2xl">
         <AuthBanner />
         <Formik
-          initialValues={defaultLoginInputs}
-          validationSchema={loginInputsSchema}
+          initialValues={defaultSignUpInputs}
+          validationSchema={signUpInputSchema}
           onSubmit={async (values, actions) => console.log("submit")}
         >
           {({ isSubmitting }) => {
@@ -57,22 +57,64 @@ export default function Login() {
                     className="text-red-500"
                   />
                 </div>
+                <div className="flex flex-col">
+                  <Field
+                    type="password"
+                    name="rePassword"
+                    id="rePassword"
+                    placeholder="Re-enter your password"
+                    className="w-96 h-12 px-4 py-2 my-2 text-lg border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300"
+                  />
+                  <ErrorMessage
+                    name="rePassword"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <Field
+                    type="phone"
+                    name="phone"
+                    id="phone"
+                    placeholder="Enter your phone"
+                    className="w-96 h-12 px-4 py-2 my-2 text-lg border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300"
+                  />
+                  <ErrorMessage
+                    name="phone"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <Field
+                    type="address"
+                    name="location"
+                    id="location"
+                    placeholder="Enter your location"
+                    className="w-96 h-12 px-4 py-2 my-2 text-lg border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300"
+                  />
+                  <ErrorMessage
+                    name="location"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
                 <button
                   type="submit"
                   className="h-12 px-4 py-2 mt-4 bg-black text-white text-lg border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300"
                   disabled={isSubmitting}
                 >
-                  Log In
+                  Sign Up
                 </button>
               </Form>
             );
           }}
         </Formik>
         <hr className="w-96 mt-4 border-gray-700" />
-        <p className="mt-4 text-xs text-gray-500">{"Don't have an account?"}</p>
-        <Link href="/signup">
+        <p className="mt-4 text-xs text-gray-500">Already have an account?</p>
+        <Link href="/login">
           <button className="h-12 px-4 py-2 mt-4 bg-black text-white text-lg border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300">
-            Sign Up
+            Login
           </button>
         </Link>
       </div>
