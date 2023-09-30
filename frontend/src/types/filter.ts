@@ -36,7 +36,7 @@ export type PriceRange = (typeof priceRanges)[number];
 export type Filter = {
   searchQuery: string;
   category: productCategory;
-  location: Location;
-  priceRange: PriceRange;
+  location?: Location;
+  priceRange?: PriceRange;
   priceType: "paid" | "free";
 };

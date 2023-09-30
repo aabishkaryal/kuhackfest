@@ -42,13 +42,13 @@ export default function ShowListings({ listings, filters }: ListingsProps) {
       </div>
 
       {sortedListings.length > 0 ? (
-        <div className="">
+        <div className="flex gap-4 flex-row items-start justify-start flex-wrap">
           {sortedListings.map((listing) => (
             <SingleListing key={listing.id} listing={listing} />
           ))}
         </div>
       ) : (
-        <div className="">
+        <div className="flex items-center justify-center">
           <p className="text-xl">No Listings Available.</p>
         </div>
       )}

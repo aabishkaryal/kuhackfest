@@ -6,6 +6,7 @@ import SearchFilter from "./SearchFilter";
 import ShowListings from "./ShowListings";
 import { Location } from "@/types/filter";
 import { PriceRange } from "@/types/filter";
+import { exampleListings } from "@/types/Listings";
 
 type BodyProps = {};
 
@@ -13,10 +14,12 @@ export default function Body({}: BodyProps) {
   const [searchText, setSearchText] = useState("");
   const [productCategoryFilter, setProductCategoryFilter] =
     useState<productCategory>(productCategory.All);
-  const [locationFilter, setLocationFilter] = useState<Location | null>(null);
-  const [priceRangeFilter, setPriceRangeFilter] = useState<PriceRange | null>(
-    null
+  const [locationFilter, setLocationFilter] = useState<Location | undefined>(
+    undefined
   );
+  const [priceRangeFilter, setPriceRangeFilter] = useState<
+    PriceRange | undefined
+  >(undefined);
   const [priceTypeFilter, setPriceTypeFilter] = useState<"paid" | "free">(
     "paid"
   );
@@ -30,7 +33,16 @@ export default function Body({}: BodyProps) {
         />
         <hr className="my-4 border-1 border-gray-500" />
       </div>
-      <ShowListings listings={[]} />
+      <ShowListings
+        listings={exampleListings}
+        filters={{
+          category: productCategoryFilter,
+          location: locationFilter,
+          priceRange: priceRangeFilter,
+          priceType: priceTypeFilter,
+          searchQuery: searchText,
+        }}
+      />
     </main>
   );
 }

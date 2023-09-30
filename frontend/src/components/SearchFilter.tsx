@@ -35,6 +35,7 @@ export default function SearchFilters({
         <div className="w-1/5 flex flex-col space-y-1">
           <label className="text-xs">Location</label>
           <select className="w-full p-2 bg-white focus:outline-none px-4">
+            <option value="">All</option>
             {locations.map((location) => (
               <option key={location} value={location}>
                 {location}
@@ -45,6 +46,7 @@ export default function SearchFilters({
         <div className="w-1/5 flex flex-col space-y-1">
           <label className="text-xs">Price</label>
           <select className="w-full p-2 bg-white focus:outline-none px-4">
+            <option value="">All</option>
             {priceRanges.map((priceRange) => (
               <option key={priceRange} value={priceRange}>
                 {priceRange}
