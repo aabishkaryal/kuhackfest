@@ -13,3 +13,10 @@ export async function signup(
 }
 
 export async function logout() {}
+
+
+import { User } from "@/types/user";
+
+export default function fetchUser(): User | undefined {
+  return {} as User;
+}

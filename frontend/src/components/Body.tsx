@@ -11,7 +11,7 @@ import { PageType } from "@/types/pageType";
 type BodyProps = {};
 const defaultFilter: Filter = {
   searchQuery: "",
-  priceType: "all",
+  priceType: "All",
 };
 export default function Body({}: BodyProps) {
   const [filter, updateFilter] = useState<Filter>(defaultFilter);

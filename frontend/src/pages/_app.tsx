@@ -7,7 +7,7 @@ import { useState } from "react";
 import ContextProvider from "@/components/ContextProvider";
 import { User } from "@/types/user";
 import { PageType } from "@/types/pageType";
-import fetchUser from "@/lib/fetchUser";
+import fetchUser from "@/lib/auth";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [user, setUser] = useState<User | undefined>(fetchUser);

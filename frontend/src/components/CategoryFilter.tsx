@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useCallback } from "react";
 
-import { allCategoryDetails, productCategory } from "@/types/filter";
+import { allCategoryDetails, ProductCategory } from "@/types/filter";
 
 type CategoryFilterProps = {
-  category?: productCategory;
-  setCategory: (productCategory: productCategory) => void;
+  category?: ProductCategory;
+  setCategory: (v: ProductCategory) => void;
   hidden: boolean;
 };
 
