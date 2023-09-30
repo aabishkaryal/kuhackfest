@@ -1,21 +1,20 @@
 import { useState } from "react";
 
 import CategoryFilter from "./CategoryFilter";
-import { Filter, productCategory } from "@/types/filter";
+import { Filter } from "@/types/filter";
 import SearchFilter from "./SearchFilter";
 import ShowListings from "./ShowListings";
-import { Location } from "@/types/filter";
-import { PriceRange } from "@/types/filter";
 import { exampleListings } from "@/types/Listings";
 
-type BodyProps = {};
+type BodyProps = {
+  dashboard?: boolean;
+};
 const defaultFilter: Filter = {
   searchQuery: "",
-  priceType: "paid",
+  priceType: "all",
 };
-export default function Body({}: BodyProps) {
+export default function Body({ dashboard = false }: BodyProps) {
   const [filter, updateFilter] = useState<Filter>(defaultFilter);
-  console.log({ filter });
   return (
     <main className="flex flex-col max-w-[1200px] w-[90%]">
       <div className="flex flex-col bg-gray-100 p-4 justify-center w-full">
@@ -24,6 +23,10 @@ export default function Body({}: BodyProps) {
           setSearchText={(s) => updateFilter({ ...filter, searchQuery: s })}
           location={filter.location}
           setLocation={(l) => updateFilter({ ...filter, location: l })}
+          priceRange={filter.priceRange}
+          setPriceRange={(pr) => updateFilter({ ...filter, priceRange: pr })}
+          priceType={filter.priceType}
+          setPriceType={(pt) => updateFilter({ ...filter, priceType: pt })}
         />
         <CategoryFilter
           category={filter.category}

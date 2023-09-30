@@ -30,13 +30,15 @@ export const priceRanges = [
   "10,000 - 50,000",
   "50,000+",
 ] as const;
-
 export type PriceRange = (typeof priceRanges)[number];
+
+export const priceTypes = ["paid", "free", "all"] as const;
+export type PriceType = (typeof priceTypes)[number];
 
 export type Filter = {
   searchQuery: string;
+  priceType: PriceType;
   category?: productCategory;
   location?: Location;
   priceRange?: PriceRange;
-  priceType: "paid" | "free";
 };

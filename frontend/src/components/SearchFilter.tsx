@@ -1,14 +1,17 @@
-import { Location, locations } from "@/types/filter";
+import { Location, PriceRange, PriceType, locations } from "@/types/filter";
 import { priceRanges } from "@/types/filter";
-import type { Dispatch, SetStateAction } from "react";
 
 import { BiSearch } from "react-icons/bi";
 
 type SearchFilterProps = {
   searchText: string;
   setSearchText: (searchText: string) => void;
-  location?: string;
+  location?: Location;
   setLocation: (location: Location | undefined) => void;
+  priceRange?: PriceRange;
+  setPriceRange: (priceRange: PriceRange | undefined) => void;
+  priceType: PriceType;
+  setPriceType: (priceType: PriceType) => void;
 };
 
 export default function SearchFilters({
@@ -16,6 +19,10 @@ export default function SearchFilters({
   setSearchText,
   location,
   setLocation,
+  priceRange,
+  setPriceRange,
+  priceType,
+  setPriceType,
 }: SearchFilterProps) {
   return (
     <section className="w-full flex flex-col space-y-4">
@@ -53,8 +60,12 @@ export default function SearchFilters({
         </div>
         <div className="w-1/5 flex flex-col space-y-1">
           <label className="text-xs">Price</label>
-          <select className="w-full p-2 bg-white focus:outline-none px-4">
-            <option value="">All</option>
+          <select
+            className="w-full p-2 bg-white focus:outline-none px-4"
+            value={priceRange}
+            onChange={(e) => setPriceRange(e.target.value as PriceRange)}
+          >
+            <option value="All">All</option>
             {priceRanges.map((priceRange) => (
               <option key={priceRange} value={priceRange}>
                 {priceRange}
@@ -63,9 +74,14 @@ export default function SearchFilters({
           </select>
         </div>
         <div className="w-[10%] flex flex-col space-y-1">
-          <select className="w-full p-2 bg-white focus:outline-none px-4">
-            <option value="paid">Paid</option>
-            <option value="free">Free</option>
+          <select
+            className="w-full p-2 bg-white focus:outline-none px-4"
+            value={priceType}
+            onChange={(e) => setPriceType(e.target.value as PriceType)}
+          >
+            <option value="Paid">Paid</option>
+            <option value="Free">Free</option>
+            <option value="All">Free</option>
           </select>
         </div>
       </div>
