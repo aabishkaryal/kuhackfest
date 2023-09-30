@@ -19,3 +19,24 @@ export const allProductCategoryDetails: [productCategory, IconType][] = [
   [productCategory.Vehicles, RiMotorbikeFill],
   [productCategory.Others, BiHome],
 ];
+
+export const locations = ["Kathmandu", "Butwal", "Pokhara"] as const;
+export type Location = (typeof locations)[number];
+
+export const priceRanges = [
+  "0 - 1,000",
+  "1,000 - 5,000",
+  "5,000 - 10,000",
+  "10,000 - 50,000",
+  "50,000+",
+] as const;
+
+export type PriceRange = (typeof priceRanges)[number];
+
+export type Filter = {
+  searchQuery: string;
+  category: productCategory;
+  location: Location;
+  priceRange: PriceRange;
+  priceType: "paid" | "free";
+};

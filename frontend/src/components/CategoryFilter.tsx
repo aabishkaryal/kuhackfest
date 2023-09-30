@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useCallback } from "react";
 
-import { allProductCategoryDetails, productCategory } from "@/types/Categories";
+import { allProductCategoryDetails, productCategory } from "@/types/filter";
 
 type CategoryFilterProps = {
   productCategoryFilter: productCategory;
@@ -11,9 +11,12 @@ export default function CategoryFilter({
   productCategoryFilter,
   setProductCategoryFilter,
 }: CategoryFilterProps) {
-  const handleClick = (productCategory: productCategory) => {
-    setProductCategoryFilter(productCategory);
-  };
+  const handleClick = useCallback(
+    (productCategory: productCategory) => {
+      setProductCategoryFilter(productCategory);
+    },
+    [setProductCategoryFilter]
+  );
   return (
     <section className="w-full flex flex-row justify-around mt-8">
       {allProductCategoryDetails.map(([productCategory, Icon]) => (

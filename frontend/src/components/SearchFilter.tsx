@@ -1,9 +1,8 @@
-import locations from "@/data/locations";
-import priceRanges from "@/data/price-range";
+import { locations } from "@/types/filter";
+import { priceRanges } from "@/types/filter";
 import type { Dispatch, SetStateAction } from "react";
 
 import { BiSearch } from "react-icons/bi";
-import { MdLocationPin } from "react-icons/md";
 
 type SearchFilterProps = {
   searchText: string;

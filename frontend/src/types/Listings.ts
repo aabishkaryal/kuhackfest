@@ -1,4 +1,4 @@
-import { productCategory } from "./Categories";
+import { productCategory } from "./filter";
 
 export type Listing = {
   id: string;
