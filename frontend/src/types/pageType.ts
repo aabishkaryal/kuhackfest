@@ -3,6 +3,7 @@ export const pageTypes = [
   "saved",
   "sell",
   "edit",
+  "show",
   "index",
 ] as const;
 

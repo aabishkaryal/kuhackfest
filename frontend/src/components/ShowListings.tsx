@@ -9,7 +9,7 @@ import SingleListing from "./SingleListing";
 
 type ListingsProps = {
   listings: Listing[];
-  filter: Filter;
+  filter?: Filter;
 };
 
 export default function ShowListings({ listings, filter }: ListingsProps) {
@@ -23,7 +23,7 @@ export default function ShowListings({ listings, filter }: ListingsProps) {
     [filteredListings, sortBy]
   );
   return (
-    <section className="w-full flex flex-col mt-4">
+    <section className="w-full flex flex-col my-4">
       <div className="flex flex-row justify-between p-4 items-end">
         <p className="text-2xl">Our Listings</p>
         <div className="flex flex-col">

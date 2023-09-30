@@ -65,7 +65,7 @@ export const exampleListings: Listing[] = [
     description: "This is a very good phone",
     price: 1000,
     category: "Electronics",
-    images: ["/100.png"],
+    images: ["/100.png", "/200.svg", "/300.svg"],
     userId: "1",
     createdAt: "2021-05-01T19:20:00.000Z",
     timeLimit: 1,

@@ -20,6 +20,7 @@ export default function ListingForm() {
   }
 
   const [images, setImages] = useState<File[]>([]);
+  console.log({ images });
   return (
     <div className="w-4/5 max-w-1200 flex flex-col items-center justify-center shadow-md mt-4 py-2">
       <h1 className="text-3xl font-bold my-4">Add a new product</h1>
@@ -151,7 +152,6 @@ export default function ListingForm() {
                 accept="image/*"
                 multiple
                 onChange={(event) => {
-                  console.log(event.target.files);
                   const newImages = [
                     ...Array.from(event.target.files!),
                     ...images,
@@ -166,9 +166,9 @@ export default function ListingForm() {
                 className="text-red-500"
               />
               <div className="flex flex-row space-x-4 my-4">
-                {images.map((image) => (
+                {images.map((image, i) => (
                   <Image
-                    key={image.name}
+                    key={image.name + i}
                     src={URL.createObjectURL(image)}
                     width={100}
                     height={100}

@@ -3,7 +3,7 @@ import { Filter } from "@/types/filter";
 
 export function filterListings(
   listings: Listing[],
-  filters: Filter
+  filters: Filter | undefined
 ): Listing[] {
   return listings;
 }
