@@ -7,6 +7,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { UserContext } from "@/context/UserContext";
 import AuthBanner from "@/components/AuthBanner";
 import { defaultLoginInputs, loginInputsSchema } from "@/types/loginInputs";
+import { login } from "@/lib/auth";
 
 export default function Login() {
   const router = useRouter();
@@ -23,7 +24,12 @@ export default function Login() {
         <Formik
           initialValues={defaultLoginInputs}
           validationSchema={loginInputsSchema}
-          onSubmit={async (values, actions) => console.log("submit")}
+          onSubmit={async (values, actions) => {
+            console.log("submit");
+            await login(values.email, values.password).finally(() =>
+              actions.setSubmitting(false)
+            );
+          }}
         >
           {({ isSubmitting }) => {
             return (

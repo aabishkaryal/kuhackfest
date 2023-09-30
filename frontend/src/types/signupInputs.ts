@@ -4,6 +4,7 @@ interface signUpInputs {
   email: string;
   password: string;
   rePassword: string;
+  name: string;
   phone: string;
   location: string;
 }
@@ -12,11 +13,13 @@ export const defaultSignUpInputs: signUpInputs = {
   email: "",
   password: "",
   rePassword: "",
+  name: "",
   phone: "",
   location: "",
 };
 
 export const signUpInputSchema = Yup.object().shape({
+  name: Yup.string().required("Required"),
   email: Yup.string().email("Invalid Email Address").required("Required"),
   password: Yup.string()
     .required("Required")
