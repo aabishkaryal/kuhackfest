@@ -1,52 +1,69 @@
 import Link from "next/link";
+import { useContext } from "react";
 
-import { BiLogOut, BiSolidDashboard, BiLogIn } from "react-icons/bi";
-import { MdNotifications } from "react-icons/md";
+import { MdNotificationsNone } from "react-icons/md";
+
+import { PageContext } from "@/context/PageContext";
+import { PageType } from "@/types/pageType";
 
 type NavLinksProps = {
   authenticated: boolean;
 };
 
 export default function NavLink({ authenticated }: NavLinksProps) {
+  const pageValue = useContext(PageContext);
+  let pageType: PageType = "index";
+  if (pageValue) {
+    pageType = pageValue.pageType;
+  }
   return (
-    <>
+    <div className="">
       {authenticated ? (
-        <nav className="space-x-4 flex flex-row">
-          <Link href="/notifications">
-            <button className="flex flex-row items-center space-x-1">
-              <MdNotifications className="text-xl" />
-              <span className="text-xl">Notifications</span>
-            </button>
-          </Link>
+        <nav className="space-x-6 flex flex-row">
+          <button className="flex flex-row items-center space-x-1">
+            <MdNotificationsNone size={24} />
+          </button>
+          {pageType == "dashboard" ? (
+            <Link href="/sell">
+              <button className="flex flex-row items-center space-x-1 px-1 rounded-md border-red-500 border-[1px]">
+                <span className="text-xl">Sell</span>
+              </button>
+            </Link>
+          ) : (
+            <Link href="/dashboard">
+              <button className="flex flex-row items-center space-x-1 bg-[#6c1cde] text-white px-2 rounded-sm">
+                <span className="text-xl">Dashboard</span>
+              </button>
+            </Link>
+          )}
+          {pageType != "saved" && (
+            <Link href="/saved">
+              <button className="flex flex-row items-center space-x-1">
+                <span className="text-xl">Saved</span>
+              </button>
+            </Link>
+          )}
           <Link href="/logout">
             <button className="flex flex-row items-center space-x-1">
-              <BiLogOut className="text-xl" />
               <span className="text-xl">Logout</span>
-            </button>
-          </Link>
-          <Link href="/dashboard">
-            <button className="flex flex-row items-center space-x-1">
-              <BiSolidDashboard className="text-xl" />
-              <span className="text-xl">Dashboard</span>
             </button>
           </Link>
         </nav>
       ) : (
-        <nav className="space-x-4 flex flex-row">
+        <nav className="space-x-6 flex flex-row">
           <Link href="/login">
-            <button className="flex flex-row items-center space-x-1">
+            <button className="flex flex-row items-center space-x-1 bg-[#6c1cde] text-white px-2 rounded-sm">
               <span className="text-xl">Login</span>
-              <BiLogIn className="text-xl" />
             </button>
           </Link>
           <Link href="/signup">
             <button className="flex flex-row items-center space-x-1">
               <span className="text-xl">Signup</span>
-              <BiLogIn className="text-xl" />
             </button>
           </Link>
         </nav>
       )}
-    </>
+    </div>
   );
 }
+// 6c1cde
