@@ -44,7 +44,7 @@ export const CreateListingInputSchema = Yup.object().shape({
     .min(100, "Description must be 100 characters long"),
   price: Yup.number()
     .required("Price is required")
-    .positive("Price must be positive"),
+    .min(0, "Price must be zero or positive"),
   category: Yup.string()
     .required("Category is required")
     .oneOf(productCategories),
@@ -67,7 +67,7 @@ export const exampleListings: Listing[] = [
     category: "Electronics",
     images: ["/100.png", "/200.svg", "/300.svg"],
     userId: "1",
-    createdAt: "2021-05-01T19:20:00.000Z",
+    createdAt: "2023-10-02T19:20:00.000Z",
     timeLimit: 1,
     location: "Kathmandu",
     phoneNumber: "1234567890",
@@ -81,7 +81,7 @@ export const exampleListings: Listing[] = [
     category: "Vehicles",
     images: ["/100.png"],
     userId: "1",
-    createdAt: "2021-05-01T19:20:00.000Z",
+    createdAt: "2023-10-02T19:20:00.000Z",
     timeLimit: 1,
     location: "Kathmandu",
     phoneNumber: "1234567890",

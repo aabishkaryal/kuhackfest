@@ -52,7 +52,7 @@ export default function ListingForm() {
               />
             </div>
             <div className="flex flex-col my-2">
-              <label htmlFor="price">Product Price:</label>
+              <label htmlFor="price">Product Price (NRs):</label>
               <Field
                 type="number"
                 name="price"

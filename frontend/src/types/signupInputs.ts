@@ -6,7 +6,7 @@ interface signUpInputs {
   rePassword: string;
   name: string;
   phone: string;
-  location: string;
+  address: string;
 }
 
 export const defaultSignUpInputs: signUpInputs = {
@@ -15,7 +15,7 @@ export const defaultSignUpInputs: signUpInputs = {
   rePassword: "",
   name: "",
   phone: "",
-  location: "",
+  address: "",
 };
 
 export const signUpInputSchema = Yup.object().shape({
@@ -28,5 +28,5 @@ export const signUpInputSchema = Yup.object().shape({
     .required("Required")
     .oneOf([Yup.ref("password")], "Passwords must match"),
   phone: Yup.string().required("Required").length(10, "Invalid Phone Number"),
-  location: Yup.string().required("Required"),
+  address: Yup.string().required("Required"),
 });

@@ -31,13 +31,27 @@ export default function Signup() {
               values.password,
               values.name,
               values.phone,
-              values.location
+              values.address
             ).finally(() => actions.setSubmitting(false));
           }}
         >
           {({ isSubmitting }) => {
             return (
               <Form className="flex flex-col space-y-4">
+                <div className="flex flex-col mt-8">
+                  <Field
+                    type="name"
+                    name="name"
+                    id="name"
+                    placeholder="Enter your name"
+                    className="w-96 h-12 px-4 py-2 my-2 text-lg border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300"
+                  />
+                  <ErrorMessage
+                    name="name"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
                 <div className="flex flex-col mt-8">
                   <Field
                     type="email"
@@ -52,7 +66,6 @@ export default function Signup() {
                     className="text-red-500"
                   />
                 </div>
-
                 <div className="flex flex-col">
                   <Field
                     type="password"
@@ -98,13 +111,13 @@ export default function Signup() {
                 <div className="flex flex-col">
                   <Field
                     type="address"
-                    name="location"
-                    id="location"
-                    placeholder="Enter your location"
+                    name="address"
+                    id="address"
+                    placeholder="Enter your address"
                     className="w-96 h-12 px-4 py-2 my-2 text-lg border-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300"
                   />
                   <ErrorMessage
-                    name="location"
+                    name="address"
                     component="div"
                     className="text-red-500"
                   />

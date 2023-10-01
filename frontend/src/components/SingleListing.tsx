@@ -6,7 +6,7 @@ import { BsSave2 } from "react-icons/bs";
 import { AiOutlineEdit } from "react-icons/ai";
 
 import { Listing } from "@/types/Listings";
-import calculateTimeLeft from "@/lib/timeLeft";
+import { calculateTimeLeft } from "@/lib/timeLeft";
 import { PageContext } from "@/context/PageContext";
 import { addToWishList, removeFromWishList } from "@/lib/wishList";
 import { PageType } from "@/types/pageType";
